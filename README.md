@@ -1,6 +1,6 @@
 # Music Recommender Setup Guide
 
-This guide walks you through setting up the music recommender system using AWS EC2, Spotify API, OpenAI API, Next,js and ngrok.
+This guide walks you through setting up the music recommender system using AWS EC2, Spotify API, OpenAI API, Next.js and ngrok.
 
 ---
 
