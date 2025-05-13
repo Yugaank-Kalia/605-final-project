@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Update and install dependencies
+apt-get update -y
+apt-get install -y unzip curl python3-pip
+
+# Create a working directory
+mkdir -p /home/ubuntu/recommender
+cd /home/ubuntu/recommender
+
+# Install AWS CLI v2
+cd /tmp
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+# Add AWS to PATH
+export PATH=$PATH:/usr/local/bin
+
+# Download project files from S3 (choose which server to run, either "no spotify.py" or "server.py")
+/usr/local/bin/aws s3 cp s3://recommender-dependencies-bucket/server.py /home/ubuntu/recommender/
+/usr/local/bin/aws s3 cp s3://recommender-dependencies-bucket/requirements.txt /home/ubuntu/recommender/
+/usr/local/bin/aws s3 cp s3://recommender-dependencies-bucket/.env /home/ubuntu/recommender/
+
+cd /home/ubuntu/recommender
+
+# Convert .env file to Unix line endings
+apt-get install -y dos2unix
+dos2unix .env
+
+# Install required Python packages
+python3 -m venv venv
+source venv/bin/activate
+
+pip install --upgrade pip
+pip install -r requirements.txt
+
+# Export environment variables from .env
+set -a
+source .env
+set +a
+
+# Run the Flask server and redirect logs to ~/recommender/server.log
+nohup python3 server.py > /home/ubuntu/recommender/server.log 2>&1
