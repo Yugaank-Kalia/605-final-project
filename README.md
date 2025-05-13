@@ -1,4 +1,4 @@
-# Music Recommender Backend Setup Guide
+# Music Recommender Setup Guide
 
 This guide walks you through setting up the backend Flask server for the music recommender system using AWS EC2, Spotify API, OpenAI API, and ngrok for frontend tunneling.
 
