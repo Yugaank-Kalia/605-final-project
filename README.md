@@ -17,6 +17,18 @@ Before proceeding, set up a `.env` file with the following keys:
 
 ---
 
+Create a `.env` file in your backend directory with the following content:
+
+```
+SPOTIFY_CLIENT_ID=your_spotify_client_id
+SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
+OPENAI_API_KEY=your_openai_api_key
+AWS_ACCESS_KEY_ID=your_aws_access_key_id
+AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
+```
+
+---
+
 ## Backend Server Setup on AWS EC2
 
 ### 1. Launch EC2 Instance
@@ -135,27 +147,6 @@ bun run dev
 ```
 
 The app will be available at [http://localhost:3000](http://localhost:3000)
-
----
-
-## Final Notes
-
--   Ensure CORS is handled in your Flask server if using ngrok with the frontend.
--   You can add `.env.local` in your frontend with variables like your public API base URL.
-
----
-
-## Example `.env` File
-
-Create a `.env` file in your backend directory with the following content:
-
-```
-SPOTIFY_CLIENT_ID=your_spotify_client_id
-SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
-OPENAI_API_KEY=your_openai_api_key
-AWS_ACCESS_KEY_ID=your_aws_access_key_id
-AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key
-```
 
 ---
 
